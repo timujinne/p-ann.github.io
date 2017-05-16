@@ -1,0 +1,52 @@
+<!DOCTYPE html >
+
+<html >
+  <head>
+    <title>Video events example</title>
+    <!-- Uncomment the following meta tag if you have issues rendering this page on an intranet or local site. -->    
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"/> -->    
+    </head>
+    <body >        
+
+    <!-- <div> -->
+        <!-- <label>Type or paste a video URL: <br/> -->
+        <!-- <input type="text" id="videoFile" style="width: 600px;"  title="video file input field" value="http://ie.microsoft.com/testdrive/ieblog/2011/nov/pp4_blog_demo.mp4" />         -->
+        <!-- <button id="loadVideo" title="Load video button" >Load</button> -->
+        <!-- </label> -->
+    <!-- </div>     -->
+    <video id="Video1" controls style="border: 1px solid blue;" height="540" width="720" title="video element" src="http://ie.microsoft.com/testdrive/ieblog/2011/nov/pp4_blog_demo.mp4" autoplay>      
+         HTML5 Video is required for this example
+    </video>
+    
+    <div id="buttonbar" style="display: none;")>
+        <button id="mute" title="Mute button" ><img alt="Volume on button" src="img/vol2.png" /></button>
+    </div>   
+    <script>
+        var video = document.getElementById("Video1");
+		video.muted = true;
+		document.getElementById("mute").addEventListener("click", function (evt) {
+            if (video.muted) {
+              video.muted = false;
+            } else {
+              video.muted = true;
+            }
+          }, false);
+		  video.addEventListener("canplay", function () {
+            document.getElementById("buttonbar").style.display = "block";
+          }, false);
+		  video.addEventListener("volumechange", function () {
+            if (video.muted) {
+              // if muted, show mute image
+              document.getElementById("mute").innerHTML = "<img alt='volume off button' src='img/mute2.png' />";
+            } else {
+              // if not muted, show not muted image
+              document.getElementById("mute").innerHTML = "<img alt='volume on button' src='img/vol2.png' />";
+            }
+          }, false);
+
+    </script>
+
+
+
+  </body>
+</html>
